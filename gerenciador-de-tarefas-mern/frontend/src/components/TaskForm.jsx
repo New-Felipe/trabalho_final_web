@@ -94,7 +94,7 @@ function TaskForm({
             Pendente
           </option>
 
-          <option value="concluida">
+          <option value="concluída">
             Concluída
           </option>
         </select>

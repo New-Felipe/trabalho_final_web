@@ -105,9 +105,9 @@ function Dashboard() {
   // Alterar status
   const handleToggleStatus = async (task) => {
     const newStatus =
-      task.status === "concluida"
+      task.status === "concluída"
         ? "pendente"
-        : "concluida";
+        : "concluída";
 
     try {
       setError("");

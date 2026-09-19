@@ -11,12 +11,12 @@ function TaskCard({
 
         <span
           className={
-            task.status === "concluida"
+            task.status === "concluída"
               ? "status completed"
               : "status pending"
           }
         >
-          {task.status === "concluida"
+          {task.status === "concluída"
             ? "Concluída"
             : "Pendente"}
         </span>
@@ -33,7 +33,7 @@ function TaskCard({
           type="button"
           onClick={() => onToggleStatus(task)}
         >
-          {task.status === "concluida"
+          {task.status === "concluída"
             ? "Reabrir"
             : "Concluir"}
         </button>
