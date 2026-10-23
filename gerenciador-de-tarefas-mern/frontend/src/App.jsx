@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Login from "./pages/login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import Componentes from "./pages/Componentes";
 
 import Header from "./components/Header";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -56,7 +57,7 @@ function App() {
 
         <Route
           path="/componentes"
-          element={<EmDesenvolvimento titulo="Componentes" />}
+          element={<Componentes/>}
         />
 
         <Route

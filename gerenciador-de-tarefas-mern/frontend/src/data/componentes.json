@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "nome": "AMD Ryzen 5 7600",
+    "categoria": "Processadores",
+    "marca": "AMD",
+    "preco": 1299.90,
+    "descricao": "Processador de 6 núcleos e 12 threads, soquete AM5."
+  },
+  {
+    "id": 2,
+    "nome": "Intel Core i5-14400F",
+    "categoria": "Processadores",
+    "marca": "Intel",
+    "preco": 1199.90,
+    "descricao": "Processador de 10 núcleos e 16 threads, soquete LGA1700."
+  },
+  {
+    "id": 3,
+    "nome": "ASUS PRIME B650M-A II",
+    "categoria": "Placas-mãe",
+    "marca": "ASUS",
+    "preco": 1099.90,
+    "descricao": "Placa-mãe para processadores AMD AM5, com suporte a DDR5."
+  },
+  {
+    "id": 4,
+    "nome": "GeForce RTX 4060 8GB",
+    "categoria": "Placas de Vídeo",
+    "marca": "NVIDIA",
+    "preco": 1999.90,
+    "descricao": "Placa de vídeo com 8 GB de memória GDDR6."
+  },
+  {
+    "id": 5,
+    "nome": "Kingston Fury Beast 16GB DDR5",
+    "categoria": "Memória RAM",
+    "marca": "Kingston",
+    "preco": 399.90,
+    "descricao": "Módulo de memória RAM DDR5 com capacidade de 16 GB."
+  },
+  {
+    "id": 6,
+    "nome": "Kingston NV3 1TB NVMe",
+    "categoria": "Armazenamento",
+    "marca": "Kingston",
+    "preco": 449.90,
+    "descricao": "SSD NVMe M.2 com capacidade de 1 TB."
+  },
+  {
+    "id": 7,
+    "nome": "Corsair CX650 650W",
+    "categoria": "Fontes de Alimentação",
+    "marca": "Corsair",
+    "preco": 429.90,
+    "descricao": "Fonte de alimentação ATX com potência nominal de 650 W."
+  }
+]
