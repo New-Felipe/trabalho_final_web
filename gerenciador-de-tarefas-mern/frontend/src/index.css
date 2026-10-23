@@ -1,3 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0d0f12;
+  --color-graphite: #1a1d23;
+  --color-graphite-soft: #252a32;
+  --color-line: #343942;
+  --color-muted: #a0a8b5;
+  --color-brand: #ff7a1a;
+  --color-brand-hover: #ff923f;
+  --color-success: #22c55e;
+}
+
+@layer components {
+
+
 * {
 box-sizing: border-box;
 }
@@ -264,4 +280,6 @@ align-items: flex-start;
 .task-actions {
 flex-wrap: wrap;
 }
+}
+
 }
