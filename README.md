@@ -89,7 +89,7 @@ trabalho_final_web/
 │
 ├── README.md
 │
-└── gerenciador-de-tarefas-mern/
+└── monte-seu-pc/
     │
     ├── backend/
     │   └── Estrutura da API MERN original
@@ -329,7 +329,7 @@ A aplicação utiliza condições para apresentar diferentes estados, como:
 
 A página de componentes utiliza dados mockados armazenados em:
 
-`gerenciador-de-tarefas-mern/frontend/src/data/componentes.json`
+`monte-seu-pc/frontend/src/data/componentes.json`
 
 O catálogo contém sete produtos demonstrativos:
 
@@ -394,19 +394,19 @@ As imagens abaixo apresentam o resultado da implementação e as etapas de cria�
 
 ### 8.1 Página inicial — Desktop
 
-![Página inicial do Monte Seu PC em desktop](gerenciador-de-tarefas-mern/docs/screenshots/home-desktop.PNG)
+![Página inicial do Monte Seu PC em desktop](monte-seu-pc/docs/screenshots/home-desktop.PNG)
 
 ### 8.2 Página inicial — Mobile
 
-![Página inicial do Monte Seu PC em dispositivo móvel](gerenciador-de-tarefas-mern/docs/screenshots/home-mobile.PNG)
+![Página inicial do Monte Seu PC em dispositivo móvel](monte-seu-pc/docs/screenshots/home-mobile.PNG)
 
 ### 8.3 Catálogo de componentes — Desktop
 
-![Catálogo de componentes na versão desktop](gerenciador-de-tarefas-mern/docs/screenshots/componentes-desktop.PNG)
+![Catálogo de componentes na versão desktop](monte-seu-pc/docs/screenshots/componentes-desktop.PNG)
 
 ### 8.4 Catálogo de componentes — Mobile
 
-![Catálogo de componentes na versão mobile](gerenciador-de-tarefas-mern/docs/screenshots/componentes-mobile.PNG)
+![Catálogo de componentes na versão mobile](monte-seu-pc/docs/screenshots/componentes-mobile.PNG)
 
 ---
 
@@ -416,19 +416,19 @@ As imagens abaixo apresentam o resultado da implementação e as etapas de cria�
 
 Captura das interfaces propostas durante a etapa inicial de design.
 
-![Design do Monte Seu PC no Google Stitch](gerenciador-de-tarefas-mern/docs/screenshots/stitch-design.PNG)
+![Design do Monte Seu PC no Google Stitch](monte-seu-pc/docs/screenshots/stitch-design.PNG)
 
 ### 9.2 Figma — Organização das interfaces
 
 Captura dos frames organizados no Figma.
 
-![Interfaces organizadas no Figma](gerenciador-de-tarefas-mern/docs/screenshots/figma-design.PNG)
+![Interfaces organizadas no Figma](monte-seu-pc/docs/screenshots/figma-design.PNG)
 
 ### 9.3 Figma — Resolução de incompatibilidade
 
 Captura da tela adicional proposta pelo agente de IA para representar a resolução de um problema de compatibilidade entre componentes.
 
-![Tela de resolução de incompatibilidade proposta no Figma](gerenciador-de-tarefas-mern/docs/screenshots/Figma-Resolucao.PNG)
+![Tela de resolução de incompatibilidade proposta no Figma](monte-seu-pc/docs/screenshots/Figma-Resolucao.PNG)
 
 Essa tela demonstra a exploração de estados de erro e orientação ao usuário durante o planejamento de uma montagem.
 
@@ -436,7 +436,7 @@ Essa tela demonstra a exploração de estados de erro e orientação ao usuário
 
 Captura da utilização da v0 para gerar os componentes iniciais da página principal.
 
-![Componentes React gerados com auxílio da v0](gerenciador-de-tarefas-mern/docs/screenshots/v0-componentes.PNG)
+![Componentes React gerados com auxílio da v0](monte-seu-pc/docs/screenshots/v0-componentes.PNG)
 
 ---
 
@@ -471,7 +471,7 @@ git switch feat/monte-seu-pc
 ### 10.3 Acessar o frontend
 
 ```bash
-cd gerenciador-de-tarefas-mern/frontend
+cd monte-seu-pc/frontend
 ```
 
 ### 10.4 Instalar as dependências
@@ -570,7 +570,7 @@ O repositório foi utilizado inicialmente para o desenvolvimento de um **Gerenci
 
 A documentação dessa aplicação foi preservada no arquivo:
 
-`gerenciador-de-tarefas-mern/docs/README-gerenciador-tarefas.md`
+`monte-seu-pc/docs/README-gerenciador-tarefas.md`
 
 O Monte Seu PC está sendo desenvolvido a partir da estrutura existente, com novas páginas, componentes e funcionalidades relacionadas ao domínio de hardware.
 
