@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const connectDatabase = require("./config/database");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -78,8 +79,7 @@ message: "Rota não encontrada."
 
 // Conexão MongoDB
 mongoose
-.connect(process.env.MONGO_URI)
-.then(() => {
+connectDatabase().then(() => {
 console.log(
 "MongoDB conectado com sucesso!"
 );
