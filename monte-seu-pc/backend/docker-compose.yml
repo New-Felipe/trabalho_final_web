@@ -1,9 +1,9 @@
-
 services:
   mongo:
-    image: mongo:6
+    image: mongo:8.0
+    container_name: monte-seu-pc-mongo
     ports:
-      - "27017:27017"
+      - "127.0.0.1:27017:27017"
     volumes:
       - dados:/data/db
 

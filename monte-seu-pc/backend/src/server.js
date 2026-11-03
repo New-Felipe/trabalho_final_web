@@ -2,7 +2,6 @@ require("dotenv").config();
 
 const connectDatabase = require("./config/database");
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
 const helmet = require("helmet");
 const mongoSanitize = require("@exortek/express-mongo-sanitize");
@@ -78,23 +77,15 @@ message: "Rota não encontrada."
 });
 
 // Conexão MongoDB
-mongoose
-connectDatabase().then(() => {
-console.log(
-"MongoDB conectado com sucesso!"
-);
+connectDatabase()
+    .then(() => {
+        console.log("MongoDB conectado com sucesso!");
 
-app.listen(PORT, () => {
-console.log(
-`Servidor rodando na porta ${PORT}`
-);
-});
-})
-.catch((error) => {
-console.error(
-"Erro ao conectar ao MongoDB:",
-error
-);
-
-process.exit(1);
-});
+        app.listen(PORT, () => {
+            console.log(`Servidor rodando na porta ${PORT}`);
+        });
+    })
+    .catch((error) => {
+        console.error("Erro ao conectar ao MongoDB:", error.message);
+        process.exit(1);
+    });
