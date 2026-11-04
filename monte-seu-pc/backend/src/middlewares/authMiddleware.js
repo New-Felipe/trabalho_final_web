@@ -1,31 +1,36 @@
 const jwt = require("jsonwebtoken");
+
 const authMiddleware = (req, res, next) => {
-try {
-const authHeader = req.headers.authorization;
+  try {
+    const authHeader = req.headers.authorization;
 
-if (!authHeader) {
-return res.status(401).json({
-message: "Token não informado."
-});
-}
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({
+        message: "Token não informado ou formato inválido."
+      });
+    }
 
-const token = authHeader.startsWith("Bearer ")
-? authHeader.split(" ")[1]
-: authHeader;
+    const token = authHeader.slice(7);
 
-const decoded = jwt.verify(
-token,
-process.env.JWT_SECRET
-);
+    if (!token) {
+      return res.status(401).json({
+        message: "Token não informado."
+      });
+    }
 
-req.userId = decoded.id;
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET
+    );
 
-next();
-} catch (error) {
-return res.status(401).json({
-message: "Token inválido ou expirado."
-});
-}
+    req.userId = decoded.id;
+
+    next();
+  } catch (error) {
+    return res.status(401).json({
+      message: "Token inválido ou expirado."
+    });
+  }
 };
 
 module.exports = authMiddleware;
