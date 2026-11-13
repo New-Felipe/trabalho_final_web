@@ -12,6 +12,9 @@ require("./routes/authRoutes");
 const taskRoutes =
 require("./routes/taskRoutes");
 
+const componentRoutes =
+require("./routes/componentRoutes");
+
 const app = express();
 
 const PORT =
@@ -60,6 +63,11 @@ authRoutes
 app.use(
 "/api/tasks",
 taskRoutes
+);
+
+app.use(
+"/api/components",
+componentRoutes
 );
 
 // Rota de teste
