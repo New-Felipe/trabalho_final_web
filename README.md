@@ -530,6 +530,67 @@ A página inicial e o catálogo demonstrativo podem ser visualizados sem iniciar
 
 ---
 
+### 10.8 Importar os componentes demonstrativos para o MongoDB
+
+O backend possui uma rotina para importar os sete componentes
+demonstrativos do arquivo:
+
+`monte-seu-pc/frontend/src/data/componentes.json`
+
+A importação utiliza o modelo Mongoose `Component` e armazena
+os produtos no MongoDB.
+
+#### Pré-requisitos
+
+- Node.js e npm instalados.
+- Dependências do backend instaladas.
+- Docker e MongoDB configurados.
+- Arquivo `monte-seu-pc/backend/.env` com `MONGO_URI`
+  apontando para o banco correto.
+
+O arquivo `.env` contém configurações locais e não deve
+ser enviado ao repositório.
+
+#### Executar a importação
+
+Acesse a pasta do backend:
+
+```powershell
+cd monte-seu-pc/backend
+```
+
+Inicie o MongoDB:
+
+```powershell
+docker compose up -d
+```
+
+Execute a importação:
+
+```powershell
+npm.cmd run import:components
+```
+
+A rotina valida os componentes antes de cadastrá-los.
+
+Para identificar produtos existentes, utiliza a combinação
+de nome, marca e categoria. Quando encontra um registro
+correspondente, preserva seus dados.
+
+O comando pode ser executado novamente sem duplicar
+os sete produtos demonstrativos já cadastrados.
+
+#### Consultar os componentes importados
+
+Com o backend em execução, acesse:
+
+`http://localhost:5000/api/components`
+
+O endpoint retorna os componentes armazenados no MongoDB.
+
+**Observação:** os preços são demonstrativos e não
+representam ofertas reais de lojas.
+
 ## 11. Situação atual do desenvolvimento
 
 ### Implementado
