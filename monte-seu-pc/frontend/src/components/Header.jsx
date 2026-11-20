@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Menu, User, X, Zap } from "lucide-react";
 
 const navItems = [
@@ -17,7 +17,7 @@ function Logo() {
       className="flex shrink-0 items-center gap-2.5"
       aria-label="Monte Seu PC - Página Inicial"
     >
-      <img 
+      <img
         src="/images/favicon.png"
         alt=""
         className="h-9 w-9 shrink-0 object-contain"
@@ -45,10 +45,27 @@ const navLinkClass = ({ isActive }) =>
   ].join(" ");
 
 export default function Header({
-  isAuthenticated = false,
   currency = "R$ BRL",
 }) {
+
+  const navigate = useNavigate();
+
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    () => Boolean(localStorage.getItem("token"))
+  );
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    setIsAuthenticated(false);
+    setMenuOpen(false);
+
+    navigate("/", { replace: true });
+  };
+
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -100,6 +117,19 @@ export default function Header({
               Login / Cadastro
             </Link>
           )}
+
+
+          {isAuthenticated && (
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="hidden rounded-md border border-line bg-graphite px-3 py-2 text-sm font-semibold text-white transition-colors hover:border-brand hover:text-brand sm:inline-flex"
+              aria-label="Sair da conta"
+            >
+              Sair
+            </button>
+          )}
+
 
           {/* Botão para iniciar montagem */}
           <Link
@@ -154,6 +184,16 @@ export default function Header({
             >
               {isAuthenticated ? "Meu Perfil" : "Login / Cadastro"}
             </Link>
+
+            {isAuthenticated && (
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="rounded-md border border-line bg-ink px-3 py-2 text-center text-sm font-semibold text-white transition-colors hover:border-brand hover:text-brand"
+              >
+                Sair
+              </button>
+            )}
 
             <Link
               to="/montar-pc"
