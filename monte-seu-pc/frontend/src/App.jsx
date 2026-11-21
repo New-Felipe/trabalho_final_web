@@ -72,7 +72,11 @@ function App() {
 
         <Route
           path="/perfil"
-          element={<EmDesenvolvimento titulo="Meu Perfil" />}
+          element={
+            <ProtectedRoute>
+              <EmDesenvolvimento titulo="Meu Perfil" />
+            </ProtectedRoute>
+          }
         />
 
         <Route
