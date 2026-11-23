@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Cpu, Package, Tag } from "lucide-react";
 import Header from "../components/Header";
-import componentes from "../data/componentes.json";
+import api from "../services/api";
 
 const categorias = [
   "Todos",
@@ -67,6 +67,43 @@ function ProdutoCard({ produto }) {
 
 export default function Componentes() {
   const [categoriaAtiva, setCategoriaAtiva] = useState("Todos");
+  const [componentes, setComponentes] = useState([]);
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState("");
+
+  useEffect(() => {
+    let ativo = true;
+
+    async function carregarComponentes() {
+      try {
+        const resposta = await api.get("/components");
+
+        if (ativo) {
+          setComponentes(
+            Array.isArray(resposta.data) ? resposta.data : []
+          );
+          setErro("");
+        }
+      } catch (error) {
+        console.error("Erro ao carregar componentes:", error);
+
+        if (ativo) {
+          setErro("Não foi possível carregar os componentes.");
+          setComponentes([]);
+        }
+      } finally {
+        if (ativo) {
+          setCarregando(false);
+        }
+      }
+    }
+
+    carregarComponentes();
+
+    return () => {
+      ativo = false;
+    };
+  }, []);
 
   const produtosFiltrados = componentes.filter((produto) => {
     return (
@@ -125,21 +162,31 @@ export default function Componentes() {
                 : categoriaAtiva}
             </h2>
 
-            <div className="flex items-center gap-2 text-sm text-muted">
-              <Package size={16} aria-hidden="true" />
+            {!carregando && !erro && (
+              <div className="flex items-center gap-2 text-sm text-muted">
+                <Package size={16} aria-hidden="true" />
 
-              {produtosFiltrados.length}{" "}
-              {produtosFiltrados.length === 1
-                ? "produto"
-                : "produtos"}
-            </div>
+                {produtosFiltrados.length}{" "}
+                {produtosFiltrados.length === 1
+                  ? "produto"
+                  : "produtos"}
+                </div>
+              )}
           </div>
 
-          {produtosFiltrados.length > 0 ? (
+          {carregando ? (
+            <p className="text-center text-muted">
+              Carregando componentes...
+            </p>
+          ) : erro ? (
+            <p role="alert" className="text-center text-red-400">
+              {erro}
+            </p>
+          ) : produtosFiltrados.length > 0 ? (
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {produtosFiltrados.map((produto) => (
                 <ProdutoCard
-                  key={produto.id}
+                  key={produto._id}
                   produto={produto}
                 />
               ))}
@@ -157,6 +204,7 @@ export default function Componentes() {
               </p>
             </div>
           )}
+
         </section>
 
         {/* Aviso sobre os dados */}
