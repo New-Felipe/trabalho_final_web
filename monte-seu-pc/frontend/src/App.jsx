@@ -11,6 +11,7 @@ import Login from "./pages/login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Componentes from "./pages/Componentes";
+import MontarPC from "./pages/MontarPC";
 
 import Header from "./components/Header";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -52,7 +53,7 @@ function App() {
 
         <Route
           path="/montar-pc"
-          element={<EmDesenvolvimento titulo="Montar PC" />}
+          element={<MontarPC/>}
         />
 
         <Route
