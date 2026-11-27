@@ -38,7 +38,11 @@ function Login() {
         JSON.stringify(response.data.user)
       );
 
-      navigate("/");
+      navigate(
+        sessionStorage.getItem("montagemPendente")
+          ? "/montar-pc"
+          : "/"
+      );
     } catch (error) {
       setError(
         error.response?.data?.message ||

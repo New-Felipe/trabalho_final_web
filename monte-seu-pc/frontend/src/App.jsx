@@ -11,6 +11,8 @@ import Login from "./pages/login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Componentes from "./pages/Componentes";
+import MontarPC from "./pages/MontarPC";
+import MinhasMontagens from "./pages/MinhasMontagens";
 
 import Header from "./components/Header";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -52,12 +54,12 @@ function App() {
 
         <Route
           path="/montar-pc"
-          element={<EmDesenvolvimento titulo="Montar PC" />}
+          element={<MontarPC />}
         />
 
         <Route
           path="/componentes"
-          element={<Componentes/>}
+          element={<Componentes />}
         />
 
         <Route
@@ -67,7 +69,11 @@ function App() {
 
         <Route
           path="/minhas-montagens"
-          element={<EmDesenvolvimento titulo="Minhas Montagens" />}
+          element={
+            <ProtectedRoute>
+              <MinhasMontagens />
+            </ProtectedRoute>
+          }
         />
 
         <Route
