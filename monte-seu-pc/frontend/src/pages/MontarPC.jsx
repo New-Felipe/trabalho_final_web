@@ -8,39 +8,39 @@ export default function MontarPC() {
     const [componentes, setComponentes] = useState([]);
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState("");
-    const [selecionados, setSelecionados] = useState({});
     const [categoriaAtiva, setCategoriaAtiva] = useState("Processadores");
-    const [nomeMontagem, setNomeMontagem] = useState("");
     const [salvando, setSalvando] = useState(false);
     const [erroSalvamento, setErroSalvamento] = useState("");
     const [sucessoSalvamento, setSucessoSalvamento] = useState("");
     const navigate = useNavigate();
 
+    const [dadosMontagemPendente] = useState(() => {
+        try {
+            const dadosSalvos = sessionStorage.getItem("montagemPendente");
+
+            return dadosSalvos ? JSON.parse(dadosSalvos) : null;
+        } catch (error) {
+            console.error("Erro ao ler montagem pendente:", error);
+            return null;
+        }
+    });
+
+    const [selecionados, setSelecionados] = useState(() =>
+        dadosMontagemPendente?.selecionados &&
+            typeof dadosMontagemPendente.selecionados === "object" &&
+            !Array.isArray(dadosMontagemPendente.selecionados)
+            ? dadosMontagemPendente.selecionados
+            : {}
+    );
+
+    const [nomeMontagem, setNomeMontagem] = useState(() =>
+        typeof dadosMontagemPendente?.nome === "string"
+            ? dadosMontagemPendente.nome
+            : ""
+    );
 
     useEffect(() => {
-        const montagemPendente = sessionStorage.getItem("montagemPendente");
-
-        if (!montagemPendente) return;
-
-        try {
-            const dados = JSON.parse(montagemPendente);
-
-            if (typeof dados.nome === "string") {
-                setNomeMontagem(dados.nome);
-            }
-
-            if (
-                dados.selecionados &&
-                typeof dados.selecionados === "object" &&
-                !Array.isArray(dados.selecionados)
-            ) {
-                setSelecionados(dados.selecionados);
-            }
-        } catch (error) {
-            console.error("Erro ao recuperar montagem:", error);
-        } finally {
-            sessionStorage.removeItem("montagemPendente");
-        }
+        sessionStorage.removeItem("montagemPendente");
     }, []);
 
     useEffect(() => {
@@ -294,17 +294,25 @@ export default function MontarPC() {
                             <p role="alert" className="text-red-400">
                                 {erro}
                             </p>
-                        ) : componentes.length === 0 ? (
+                        ) : componentesFiltrados.length === 0 ? (
                             <p className="text-muted">
-                                Nenhum componente disponível no momento.
+                                Nenhum componente disponível nesta categoria.
                             </p>
                         ) : (
                             <div className="grid gap-4 sm:grid-cols-2">
                                 {componentesFiltrados.map((componente) => (
+
                                     <article
                                         key={componente._id}
-                                        className="rounded-xl border border-line bg-graphite p-5"
+                                        className={`group rounded-xl border bg-graphite p-5
+                                            transition-all duration-200
+                                            hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand/10
+                                            ${selecionados[componente.categoria]?._id === componente._id
+                                                ? "border-green-500/70 ring-1 ring-green-500/30"
+                                                : "border-line hover:border-brand/60"
+                                            }`}
                                     >
+
                                         <p className="text-sm text-muted">
                                             {componente.categoria}
                                         </p>
@@ -316,6 +324,12 @@ export default function MontarPC() {
                                         <p className="mt-2 text-sm text-muted">
                                             {componente.marca}
                                         </p>
+
+                                        {componente.descricao && (
+                                            <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted">
+                                                {componente.descricao}
+                                            </p>
+                                        )}
 
                                         <p className="mt-4 font-bold text-brand">
                                             {Number(componente.preco).toLocaleString("pt-BR", {
